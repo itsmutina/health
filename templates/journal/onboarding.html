@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+
+{% block title %}Onboarding - Mental Health Journal{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header text-center">
+                <h4 class="mb-0">
+                    <i class="fas fa-rocket"></i> Welcome! Let's set up your journal
+                </h4>
+                <p class="text-muted mb-0">This will only take 60 seconds</p>
+            </div>
+            <div class="card-body">
+                {% csrf_token %}
+                <!-- Progress Bar -->
+                <div class="progress mb-4" style="height: 8px;">
+                    <div class="progress-bar" role="progressbar" style="width: 33%" id="progressBar"></div>
+                </div>
+                
+                <!-- Step 1: Reminder Time -->
+                <div id="step1" class="onboarding-step">
+                    <h5 class="mb-3">
+                        <i class="fas fa-bell"></i> Step 1: Choose your reminder time
+                    </h5>
+                    <p class="text-muted mb-4">When would you like to be reminded to log your mood?</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">Time</label>
+                            <input type="time" class="form-control" id="reminderTime" value="20:30">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Days of the week</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="0" id="day0">
+                                <label class="form-check-label" for="day0">Sunday</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" id="day1">
+                                <label class="form-check-label" for="day1">Monday</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="2" id="day2">
+                                <label class="form-check-label" for="day2">Tuesday</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="3" id="day3">
+                                <label class="form-check-label" for="day3">Wednesday</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="4" id="day4">
+                                <label class="form-check-label" for="day4">Thursday</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="5" id="day5">
+                                <label class="form-check-label" for="day5">Friday</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="6" id="day6">
+                                <label class="form-check-label" for="day6">Saturday</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-end mt-4">
+                        <button class="btn btn-primary" onclick="nextStep()">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Emotion Tags -->
+                <div id="step2" class="onboarding-step" style="display: none;">
+                    <h5 class="mb-3">
+                        <i class="fas fa-heart"></i> Step 2: Choose your emotion tags
+                    </h5>
+                    <p class="text-muted mb-4">Select the emotions you'd like to track. You can change these later.</p>
+                    
+                    <div class="emotion-chips">
+                        {% for emotion in emotion_tags %}
+                            <div class="emotion-chip" onclick="toggleEmotionChip(this)">
+                                <input type="checkbox" 
+                                       name="emotions" 
+                                       value="{{ emotion.id }}" 
+                                       style="display: none;">
+                                {{ emotion.name }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn btn-outline-secondary" onclick="prevStep()">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep()">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Activity Tags -->
+                <div id="step3" class="onboarding-step" style="display: none;">
+                    <h5 class="mb-3">
+                        <i class="fas fa-running"></i> Step 3: Choose your activity tags
+                    </h5>
+                    <p class="text-muted mb-4">Select the activities you'd like to track. You can change these later.</p>
+                    
+                    <div class="emotion-chips">
+                        {% for activity in activity_tags %}
+                            <div class="emotion-chip" onclick="toggleEmotionChip(this)">
+                                <input type="checkbox" 
+                                       name="activities" 
+                                       value="{{ activity.id }}" 
+                                       style="display: none;">
+                                {{ activity.name }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn btn-outline-secondary" onclick="prevStep()">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button class="btn btn-success" onclick="completeOnboarding()">
+                            <i class="fas fa-check"></i> Complete Setup
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let currentStep = 1;
+    const totalSteps = 3;
+    
+    function updateProgress() {
+        const progress = (currentStep / totalSteps) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+    }
+    
+    function showStep(step) {
+        // Hide all steps
+        document.querySelectorAll('.onboarding-step').forEach(step => {
+            step.style.display = 'none';
+        });
+        
+        // Show current step
+        document.getElementById('step' + step).style.display = 'block';
+        updateProgress();
+    }
+    
+    function nextStep() {
+        if (currentStep < totalSteps) {
+            currentStep++;
+            showStep(currentStep);
+        }
+    }
+    
+    function prevStep() {
+        if (currentStep > 1) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    }
+    
+    function completeOnboarding() {
+        // Collect all data
+        const data = {
+            reminder_time: document.getElementById('reminderTime').value,
+            reminder_days: Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => parseInt(cb.value)),
+            emotions: Array.from(document.querySelectorAll('input[name="emotions"]:checked')).map(input => parseInt(input.value)),
+            activities: Array.from(document.querySelectorAll('input[name="activities"]:checked')).map(input => parseInt(input.value))
+        };
+        
+        console.log('Submitting onboarding data:', data);
+        
+        // Submit data
+        fetch('{% url "accounts:update_settings" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            console.log('Response status:', response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response data:', data);
+            if (data.success) {
+                // Redirect to home
+                window.location.href = '{% url "journal:home" %}';
+            } else {
+                alert('Error saving settings: ' + (data.message || 'Unknown error'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error saving settings. Please try again.');
+        });
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        showStep(1);
+        
+        // Select all weekdays by default
+        for (let i = 1; i <= 5; i++) {
+            document.getElementById('day' + i).checked = true;
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,404 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ report.title }} - Mental Health Journal{% endblock %}
+
+{% block content %}
+<div class="container-fluid" data-report-id="{{ report_id }}">
+    <div class="row">
+        <div class="col-12">
+            <!-- Report Header -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-0">
+                                <i class="fas fa-file-alt"></i> {{ report.title }}
+                            </h1>
+                            <p class="mb-0">Shared Report - {{ report.start_date }} to {{ report.end_date }}</p>
+                        </div>
+                        <div class="text-end">
+                            <small>Generated: {{ report.created_at|date:"M d, Y" }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Content -->
+            <div class="row">
+                <!-- Summary Statistics -->
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-chart-bar"></i> Summary Statistics
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <div class="border-end">
+                                        <h3 class="text-primary">{{ data.summary.total_entries }}</h3>
+                                        <small class="text-muted">Total Entries</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="border-end">
+                                        <h3 class="text-success">{{ data.summary.days_tracked }}</h3>
+                                        <small class="text-muted">Days Tracked</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <h3 class="text-info">{{ data.mood.average|floatformat:1 }}</h3>
+                                    <small class="text-muted">Avg Mood</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mood Range -->
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-heart"></i> Mood Range
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <div class="border-end">
+                                        <h3 class="text-success">{{ data.mood.highest }}</h3>
+                                        <small class="text-muted">Highest</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="border-end">
+                                        <h3 class="text-warning">{{ data.mood.lowest }}</h3>
+                                        <small class="text-muted">Lowest</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <h3 class="text-info">
+                                        {% if data.mood.trend > 0 %}
+                                            <i class="fas fa-arrow-up text-success"></i>
+                                        {% elif data.mood.trend < 0 %}
+                                            <i class="fas fa-arrow-down text-danger"></i>
+                                        {% else %}
+                                            <i class="fas fa-minus text-secondary"></i>
+                                        {% endif %}
+                                    </h3>
+                                    <small class="text-muted">Trend</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Analysis -->
+            <div class="row">
+                <!-- Mood Analysis -->
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-brain"></i> Mood Analysis
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                Your average mood during this period was <strong>{{ data.mood.average|floatformat:1 }}/10</strong>.
+                                {% if data.mood.trend > 0 %}
+                                    Your mood trend was <span class="text-success"><strong>positive</strong></span>, showing improvement over time.
+                                {% elif data.mood.trend < 0 %}
+                                    Your mood trend was <span class="text-danger"><strong>negative</strong></span>, indicating a decline.
+                                {% else %}
+                                    Your mood trend was <span class="text-secondary"><strong>stable</strong></span>, remaining consistent.
+                                {% endif %}
+                            </p>
+                            
+                            {% if data.mood.consistency %}
+                            <div class="mt-3">
+                                <h6>Mood Consistency</h6>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ data.mood.consistency }}%">
+                                        {{ data.mood.consistency }}%
+                                    </div>
+                                </div>
+                                <small class="text-muted">Higher values indicate more consistent mood patterns</small>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stress Analysis -->
+                {% if data.stress %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-exclamation-triangle"></i> Stress Analysis
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                Your average stress level was <strong>{{ data.stress.average|floatformat:1 }}/10</strong>.
+                                {% if data.stress.average > 7 %}
+                                    <span class="text-danger">Consider stress management techniques.</span>
+                                {% elif data.stress.average < 4 %}
+                                    <span class="text-success">You're managing stress well!</span>
+                                {% else %}
+                                    <span class="text-info">This is a moderate stress level.</span>
+                                {% endif %}
+                            </p>
+                            
+                            <div class="row text-center mt-3">
+                                <div class="col-6">
+                                    <h6 class="text-danger">{{ data.stress.highest }}</h6>
+                                    <small class="text-muted">Peak Stress</small>
+                                </div>
+                                <div class="col-6">
+                                    <h6 class="text-success">{{ data.stress.lowest }}</h6>
+                                    <small class="text-muted">Lowest Stress</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Activities and Emotions -->
+            <div class="row">
+                <!-- Top Activities -->
+                {% if data.activities %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-running"></i> Most Common Activities
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group list-group-flush">
+                                {% for activity in data.activities %}
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>{{ activity.0 }}</span>
+                                    <span class="badge bg-primary rounded-pill">{{ activity.1 }}</span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Top Emotions -->
+                {% if data.emotions %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-smile"></i> Most Common Emotions
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group list-group-flush">
+                                {% for emotion in data.emotions %}
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>{{ emotion.0 }}</span>
+                                    <span class="badge bg-secondary rounded-pill">{{ emotion.1 }}</span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Sleep Analysis -->
+            {% if data.sleep %}
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-bed"></i> Sleep Analysis
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-md-3">
+                                    <h4 class="text-primary">{{ data.sleep.average|floatformat:1 }}</h4>
+                                    <small class="text-muted">Avg Hours</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <h4 class="text-success">{{ data.sleep.best|floatformat:1 }}</h4>
+                                    <small class="text-muted">Best Night</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <h4 class="text-warning">{{ data.sleep.worst|floatformat:1 }}</h4>
+                                    <small class="text-muted">Worst Night</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <h4 class="text-info">{{ data.sleep.consistency }}%</h4>
+                                    <small class="text-muted">Consistency</small>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-3">
+                                {% if data.sleep.average < 7 %}
+                                    <div class="alert alert-warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        Consider aiming for 7-9 hours of sleep for better mental health.
+                                    </div>
+                                {% elif data.sleep.average > 9 %}
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-info-circle"></i>
+                                        You're getting plenty of sleep! This is great for your mental health.
+                                    </div>
+                                {% else %}
+                                    <div class="alert alert-success">
+                                        <i class="fas fa-check-circle"></i>
+                                        You're maintaining a healthy sleep schedule.
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Insights -->
+            {% if data.insights %}
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-lightbulb"></i> Key Insights
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                {% for insight in data.insights %}
+                                <div class="col-md-6 mb-3">
+                                    <div class="card border-left-primary">
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{ insight.title }}</h6>
+                                            <p class="card-text">{{ insight.description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Action Buttons -->
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <div class="d-flex gap-3 justify-content-center flex-wrap">
+                        <button type="button" class="btn btn-primary btn-lg" onclick="downloadPDF()">
+                            <i class="fas fa-download"></i> Save as PDF
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary btn-lg" onclick="window.print()">
+                            <i class="fas fa-print"></i> Print Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="card">
+                <div class="card-body text-center">
+                    <p class="text-muted mb-0">
+                        <i class="fas fa-shield-alt"></i>
+                        This report was generated by Mental Health Journal
+                    </p>
+                    <small class="text-muted">
+                        Report generated on {{ report.created_at|date:"F d, Y \a\t g:i A" }}
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Download PDF function
+    function downloadPDF() {
+        // Show loading state
+        const button = event.target;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+        button.disabled = true;
+        
+        // Get the token from the current URL
+        const token = getTokenFromUrl();
+        
+        if (!token) {
+            showAlert('Unable to generate PDF. Please try again.', 'error');
+            button.innerHTML = originalText;
+            button.disabled = false;
+            return;
+        }
+        
+        // Create download link for shared report
+        const downloadUrl = `/reports/share/${token}/download/`;
+        
+        // Create temporary link and trigger download
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = '{{ report.title }}.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Reset button
+        setTimeout(() => {
+            button.innerHTML = originalText;
+            button.disabled = false;
+        }, 2000);
+    }
+    
+    // Extract token from URL
+    function getTokenFromUrl() {
+        const pathParts = window.location.pathname.split('/');
+        const tokenIndex = pathParts.indexOf('share');
+        if (tokenIndex !== -1 && pathParts[tokenIndex + 1]) {
+            return pathParts[tokenIndex + 1];
+        }
+        return null;
+    }
+    
+    // Show alert function
+    function showAlert(message, type) {
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+        alert.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+        alert.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        
+        document.body.appendChild(alert);
+        
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            if (alert.parentNode) {
+                alert.parentNode.removeChild(alert);
+            }
+        }, 5000);
+    }
+</script>
+{% endblock %}

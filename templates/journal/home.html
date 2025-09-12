@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Mental Health Journal{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Welcome back, {{ user.first_name|default:user.email }}!</h1>
+            <a href="{% url 'journal:new_entry' %}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Log Today
+            </a>
+        </div>
+    </div>
+</div>
+
+{% if total_entries == 0 %}
+    <!-- Empty State -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="card">
+                <div class="card-body py-5">
+                    <i class="fas fa-heart fa-3x text-muted mb-4"></i>
+                    <h3>Welcome to your Mental Health Journal!</h3>
+                    <p class="lead">Let's log your first entry and start tracking your mood patterns.</p>
+                    <p class="text-muted mb-4">
+                        <strong>Mood Scale:</strong> 0 = Very Low, 5 = Neutral, 10 = Very High
+                    </p>
+                    <a href="{% url 'journal:new_entry' %}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-plus"></i> Log Your First Entry
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <!-- Dashboard Content -->
+    <div class="row">
+        <!-- Stats Cards -->
+        <div class="col-md-3 mb-4">
+            <div class="stats-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="mb-1">7-Day Average</h6>
+                        <h3 class="mb-0">{{ avg_mood_7d|floatformat:1|default:"N/A" }}</h3>
+                    </div>
+                    <i class="fas fa-chart-line fa-2x"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-fire fa-2x text-warning mb-2"></i>
+                    <h4 class="mb-1">{{ streak }}</h4>
+                    <p class="text-muted mb-0">Day Streak</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-check fa-2x text-success mb-2"></i>
+                    <h4 class="mb-1">{{ total_entries }}</h4>
+                    <p class="text-muted mb-0">Total Entries</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-trophy fa-2x text-primary mb-2"></i>
+                    <h4 class="mb-1">
+                        {% if daily_data and daily_data.0.date == today %}
+                            {{ daily_data.0.avg_mood|default:"N/A" }}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </h4>
+                    <p class="text-muted mb-0">Today's Avg Mood</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mood Chart -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-line"></i> Mood Trend (Last 7 Days)
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="moodChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Entries -->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-history"></i> Recent Entries
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if daily_data %}
+                        <div class="list-group list-group-flush">
+                            {% for day in daily_data %}
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">{{ day.date|date:"M d, Y" }}</h6>
+                                        <p class="mb-1">
+                                            Avg Mood: <span class="badge {% if day.avg_mood >= 7 %}bg-success{% elif day.avg_mood >= 4 %}bg-warning{% else %}bg-danger{% endif %}">{{ day.avg_mood|floatformat:1 }}</span>
+                                            {% if day.avg_stress %}
+                                                | Avg Stress: <span class="badge bg-secondary">{{ day.avg_stress|floatformat:1 }}</span>
+                                            {% endif %}
+                                            {% if day.avg_sleep %}
+                                                | Avg Sleep: <span class="badge bg-info">{{ day.avg_sleep|floatformat:1 }}h</span>
+                                            {% endif %}
+                                            <span class="badge bg-light text-dark ms-2">{{ day.entry_count }} entr{{ day.entry_count|pluralize:"y,ies" }}</span>
+                                        </p>
+                                        <div class="mt-1">
+                                            {% for entry in day.entries %}
+                                                <small class="text-muted">
+                                                    {{ entry.created_at|time:"g:i A" }}: {{ entry.mood_rating }}/10
+                                                    {% if not forloop.last %} | {% endif %}
+                                                </small>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        {% if day.entry_count == 1 %}
+                                            <a href="{% url 'journal:edit_entry' day.entries.0.id %}" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        {% else %}
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    {% for entry in day.entries %}
+                                                        <li><a class="dropdown-item" href="{% url 'journal:edit_entry' entry.id %}">
+                                                            {{ entry.created_at|time:"g:i A" }} - {{ entry.mood_rating }}/10
+                                                        </a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted text-center py-4">No recent entries found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bolt"></i> Quick Actions
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'journal:new_entry' %}" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Log Today's Mood
+                        </a>
+                        <a href="{% url 'journal:history' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-history"></i> View History
+                        </a>
+                        <a href="{% url 'insights:insights' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-chart-line"></i> View Insights
+                        </a>
+                        <a href="{% url 'reports:reports' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-file-alt"></i> Generate Report
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Daily Prompt -->
+            {% if daily_prompt %}
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="fas fa-lightbulb"></i> Today's Prompt
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-0">{{ daily_prompt.text }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Mood Chart
+    {% if daily_data %}
+    const ctx = document.getElementById('moodChart').getContext('2d');
+    const moodChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [
+                {% for day in daily_data %}
+                    '{{ day.date|date:"M d" }}'{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ],
+            datasets: [{
+                label: 'Daily Avg Mood',
+                data: [
+                    {% for day in daily_data %}
+                        {{ day.avg_mood|default:"null" }}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                ],
+                borderColor: '#6c5ce7',
+                backgroundColor: 'rgba(108, 92, 231, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: '#6c5ce7',
+                pointBorderColor: '#ffffff',
+                pointBorderWidth: 2,
+                pointRadius: 6,
+                pointHoverRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 10,
+                    ticks: {
+                        stepSize: 1
+                    },
+                    grid: {
+                        color: 'rgba(0,0,0,0.1)'
+                    }
+                },
+                x: {
+                    grid: {
+                        color: 'rgba(0,0,0,0.1)'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    titleColor: '#ffffff',
+                    bodyColor: '#ffffff',
+                    borderColor: '#6c5ce7',
+                    borderWidth: 1
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index'
+            }
+        }
+    });
+    {% endif %}
+</script>
+{% endblock %}

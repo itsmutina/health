@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+
+{% block title %}New Entry - Mental Health Journal{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i class="fas fa-plus"></i> Log Today's Entry
+                </h4>
+            </div>
+            <div class="card-body">
+                {% if today_entries %}
+                <div class="alert alert-info mb-4">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>You have {{ today_entry_count }} entr{{ today_entry_count|pluralize:"y,ies" }} for today!</strong> 
+                    This will add another entry to your daily log.
+                    <div class="mt-2">
+                        <strong>Today's Entries:</strong>
+                        <ul class="mb-0 mt-1">
+                            {% for entry in today_entries %}
+                            <li>
+                                <small>{{ entry.created_at|time:"g:i A" }} - Mood: {{ entry.mood_rating }}/10</small>
+                                <a href="{% url 'journal:edit_entry' entry.id %}" class="btn btn-sm btn-outline-primary ms-2">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <form id="entryForm" method="post">
+                    {% csrf_token %}
+                    
+                    <!-- Mood Rating -->
+                    <div class="mb-4">
+                        <label class="form-label">
+                            <strong>How are you feeling today?</strong>
+                            <span class="text-muted">(0 = Very Low, 10 = Very High)</span>
+                        </label>
+                        <div class="d-flex align-items-center">
+                            <span class="me-3">0</span>
+                            <input type="range" 
+                                   class="form-range mood-slider" 
+                                   id="moodSlider" 
+                                   name="mood_rating" 
+                                   min="0" 
+                                   max="10" 
+                                   value="{% if existing_entry %}{{ existing_entry.mood_rating }}{% else %}5{% endif %}" 
+                                   oninput="updateMoodValue(this)">
+                            <span class="ms-3">10</span>
+                            <span id="mood-value" class="badge bg-primary ms-3">5</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Emotions -->
+                    <div class="mb-4">
+                        <label class="form-label">
+                            <strong>What emotions are you experiencing?</strong>
+                            <span class="text-muted">(Select all that apply)</span>
+                        </label>
+                        <div class="emotion-chips">
+                            {% for emotion_tag in user_emotion_tags %}
+                                <div class="emotion-chip {% if emotion_tag.emotion in existing_emotions %}selected{% endif %}" onclick="toggleEmotionChip(this)">
+                                    <input type="checkbox" 
+                                           name="emotions" 
+                                           value="{{ emotion_tag.emotion.id }}" 
+                                           style="display: none;"
+                                           {% if emotion_tag.emotion in existing_emotions %}checked{% endif %}>
+                                    {{ emotion_tag.emotion.name }}
+                                </div>
+                            {% empty %}
+                                <p class="text-muted">No emotion tags available. <a href="{% url 'accounts:settings' %}">Add some in settings</a></p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <!-- Optional Metrics -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">
+                                <strong>Stress Level</strong>
+                                <span class="text-muted">(Optional)</span>
+                            </label>
+                            <input type="range" 
+                                   class="form-range" 
+                                   name="stress_level" 
+                                   min="0" 
+                                   max="10" 
+                                   value="5">
+                            <div class="d-flex justify-content-between">
+                                <small>0 - No Stress</small>
+                                <small>10 - Very Stressed</small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">
+                                <strong>Sleep Hours</strong>
+                                <span class="text-muted">(Optional)</span>
+                            </label>
+                            <input type="number" 
+                                   class="form-control" 
+                                   name="sleep_hours" 
+                                   min="0" 
+                                   max="24" 
+                                   step="0.5" 
+                                   placeholder="e.g., 7.5">
+                        </div>
+                    </div>
+                    
+                    <!-- Activities -->
+                    <div class="mb-4">
+                        <label class="form-label">
+                            <strong>What did you do today?</strong>
+                            <span class="text-muted">(Select all that apply)</span>
+                        </label>
+                        <div class="emotion-chips">
+                            {% for activity_tag in user_activity_tags %}
+                                <div class="emotion-chip {% if activity_tag.activity in existing_activities %}selected{% endif %}" onclick="toggleEmotionChip(this)">
+                                    <input type="checkbox" 
+                                           name="activities" 
+                                           value="{{ activity_tag.activity.id }}" 
+                                           style="display: none;"
+                                           {% if activity_tag.activity in existing_activities %}checked{% endif %}>
+                                    {{ activity_tag.activity.name }}
+                                </div>
+                            {% empty %}
+                                <!-- Fallback: Show default activities if no user tags -->
+                                <div class="emotion-chips">
+                                    {% for activity in activity_tags %}
+                                        <div class="emotion-chip" onclick="toggleEmotionChip(this)">
+                                            <input type="checkbox" 
+                                                   name="activities" 
+                                                   value="{{ activity.id }}" 
+                                                   style="display: none;">
+                                            {{ activity.name }}
+                                        </div>
+                                    {% empty %}
+                                        <p class="text-muted">No activity tags available. <a href="{% url 'accounts:settings' %}">Add some in settings</a></p>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <!-- Daily Prompt -->
+                    {% if daily_prompt %}
+                        <div class="mb-4">
+                            <label class="form-label">
+                                <strong>{{ daily_prompt.text }}</strong>
+                            </label>
+                            <textarea class="form-control" 
+                                      name="quick_prompt" 
+                                      rows="3" 
+                                      placeholder="Share your thoughts..."></textarea>
+                        </div>
+                    {% endif %}
+                    
+                    <!-- Notes -->
+                    <div class="mb-4">
+                        <label class="form-label">
+                            <strong>Additional Notes</strong>
+                            <span class="text-muted">(Optional)</span>
+                        </label>
+                        <textarea class="form-control" 
+                                  name="notes" 
+                                  rows="4" 
+                                  placeholder="How was your day? What made you feel this way? Any other thoughts you'd like to record...">{% if existing_entry %}{{ existing_entry.notes }}{% endif %}</textarea>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-save"></i> 
+                            {% if existing_entry %}Update Entry{% else %}Save Entry{% endif %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Initialize mood slider
+    document.addEventListener('DOMContentLoaded', function() {
+        const moodSlider = document.getElementById('moodSlider');
+        updateMoodValue(moodSlider);
+    });
+    
+    // Form submission
+    document.getElementById('entryForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Collect form data
+        const formData = new FormData(this);
+        
+        // Convert to JSON for API call
+        const moodRating = parseInt(formData.get('mood_rating'));
+        if (isNaN(moodRating) || moodRating < 0 || moodRating > 10) {
+            alert('Please select a valid mood rating between 0 and 10.');
+            return;
+        }
+        
+        const data = {
+            mood_rating: moodRating,
+            stress_level: formData.get('stress_level') ? parseInt(formData.get('stress_level')) : null,
+            sleep_hours: formData.get('sleep_hours') && formData.get('sleep_hours') !== '' ? parseFloat(formData.get('sleep_hours')) : null,
+            notes: formData.get('notes') || '',
+            quick_prompt: formData.get('quick_prompt') || '',
+            emotions: Array.from(document.querySelectorAll('input[name="emotions"]:checked')).map(input => parseInt(input.value)),
+            activities: Array.from(document.querySelectorAll('input[name="activities"]:checked')).map(input => parseInt(input.value))
+        };
+        
+        // Debug: Log the data being sent
+        console.log('Sending data:', data);
+        
+        // Get CSRF token
+        const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]');
+        if (!csrfToken) {
+            alert('CSRF token not found. Please refresh the page and try again.');
+            return;
+        }
+        
+        // Submit via API
+        fetch('{% url "journal:quick_add_api" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken.value
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            console.log('Response status:', response.status);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response data:', data);
+            if (data.success) {
+                // Show success message briefly, then redirect
+                const action = data.action || 'saved';
+                const message = data.message || `Entry ${action} successfully!`;
+                
+                // Show brief success message
+                const alert = document.createElement('div');
+                alert.className = 'alert alert-success alert-dismissible fade show';
+                alert.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <strong>Success!</strong> ${message} Redirecting to dashboard...
+                `;
+                
+                // Insert alert at the top of the card body
+                const cardBody = document.querySelector('.card-body');
+                if (cardBody) {
+                    cardBody.insertBefore(alert, cardBody.firstChild);
+                }
+                
+                // Redirect to home page after 2 seconds
+                setTimeout(() => {
+                    window.location.href = '{% url "journal:home" %}';
+                }, 2000);
+            } else {
+                alert('Error saving entry: ' + (data.error || 'Unknown error'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error saving entry: ' + error.message + '. Please try again.');
+        });
+    });
+</script>
+{% endblock %}

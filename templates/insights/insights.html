@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+
+{% block title %}Insights - Mental Health Journal{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>
+                <i class="fas fa-chart-line"></i> Insights & Analytics
+            </h1>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-primary" onclick="generateInsights()">
+                    <i class="fas fa-sync"></i> Generate New Insights
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Time Range Selector -->
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h6 class="mb-0">Analysis Period</h6>
+            </div>
+            <div class="col-md-6">
+                <div class="btn-group" role="group">
+                    <input type="radio" class="btn-check" name="timeRange" id="range7" value="7" {% if days == 7 %}checked{% endif %}>
+                    <label class="btn btn-outline-primary" for="range7">7 Days</label>
+                    
+                    <input type="radio" class="btn-check" name="timeRange" id="range30" value="30" {% if days == 30 %}checked{% endif %}>
+                    <label class="btn btn-outline-primary" for="range30">30 Days</label>
+                    
+                    <input type="radio" class="btn-check" name="timeRange" id="range90" value="90" {% if days == 90 %}checked{% endif %}>
+                    <label class="btn btn-outline-primary" for="range90">90 Days</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Insights Cards -->
+{% if insights %}
+    <div class="row mb-4">
+        {% for insight in insights %}
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h6 class="card-title mb-0">
+                                <i class="fas fa-{% if insight.insight_type == 'correlation' %}link{% elif insight.insight_type == 'trend' %}trending-up{% elif insight.insight_type == 'pattern' %}search{% else %}lightbulb{% endif %}"></i>
+                                {{ insight.title }}
+                            </h6>
+                            {% if not insight.is_read %}
+                                <span class="badge bg-primary">New</span>
+                            {% endif %}
+                        </div>
+                        <p class="card-text">{{ insight.description }}</p>
+                        {% if insight.data %}
+                            <div class="mt-2">
+                                {% for key, value in insight.data.items %}
+                                    <small class="text-muted">{{ key|title }}: {{ value }}</small><br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="text-center py-5">
+        <i class="fas fa-chart-line fa-3x text-muted mb-3"></i>
+        <h4>No insights yet</h4>
+        <p class="text-muted">Generate insights to discover patterns in your mood and activities. Even with just a few entries, we can provide valuable insights!</p>
+        <button type="button" class="btn btn-primary" onclick="generateInsights()">
+            <i class="fas fa-sync"></i> Generate Insights
+        </button>
+    </div>
+{% endif %}
+
+<!-- Correlations -->
+{% if correlations %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="fas fa-link"></i> Correlations
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                {% for correlation in correlations %}
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>{{ correlation.metric1|title }} vs {{ correlation.metric2|title }}</strong>
+                                <br>
+                                <small class="text-muted">Sample size: {{ correlation.sample_size }}</small>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge {% if correlation.correlation_coefficient > 0.5 %}bg-success{% elif correlation.correlation_coefficient > 0.3 %}bg-warning{% elif correlation.correlation_coefficient < -0.5 %}bg-danger{% elif correlation.correlation_coefficient < -0.3 %}bg-warning{% else %}bg-secondary{% endif %}">
+                                    {{ correlation.correlation_coefficient|floatformat:3 }}
+                                </span>
+                                <br>
+                                <small class="text-muted">
+                                    {% if correlation.correlation_coefficient > 0.5 %}Strong positive{% elif correlation.correlation_coefficient > 0.3 %}Moderate positive{% elif correlation.correlation_coefficient < -0.5 %}Strong negative{% elif correlation.correlation_coefficient < -0.3 %}Moderate negative{% else %}Weak{% endif %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+<!-- Mood Trend Chart -->
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">
+            <i class="fas fa-chart-area"></i> Mood Trend Analysis
+        </h5>
+    </div>
+    <div class="card-body">
+        <div class="chart-container">
+            <canvas id="moodTrendChart"></canvas>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Time range selector
+    document.querySelectorAll('input[name="timeRange"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const days = this.value;
+            window.location.href = `{% url 'insights:insights' %}?days=${days}`;
+        });
+    });
+
+    // Generate insights
+    function generateInsights() {
+        const daysInput = document.querySelector('input[name="timeRange"]:checked');
+        if (!daysInput) {
+            alert('Please select a time range first');
+            return;
+        }
+        const days = daysInput.value;
+        console.log('Generating insights for', days, 'days');
+        
+        fetch('{% url "insights:generate_insights" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': document.querySelector('input[name="csrfmiddlewaretoken"]').value
+            },
+            body: `days=${days}`
+        })
+        .then(response => {
+            console.log('Response status:', response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response data:', data);
+            if (data.success) {
+                console.log('Insights generated successfully');
+                location.reload();
+            } else {
+                console.error('Error generating insights:', data);
+                alert('Error generating insights: ' + (data.error || data.message || 'Unknown error'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error generating insights. Please try again.');
+        });
+    }
+
+    // Load correlation data and create chart
+    fetch('{% url "insights:correlations_api" %}?days={{ days }}')
+        .then(response => response.json())
+        .then(data => {
+            if (data.data && data.data.length > 0) {
+                createMoodTrendChart(data.data);
+            }
+        })
+        .catch(error => {
+            console.error('Error loading chart data:', error);
+        });
+
+    function createMoodTrendChart(data) {
+        const ctx = document.getElementById('moodTrendChart').getContext('2d');
+        
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.map(entry => new Date(entry.date).toLocaleDateString()),
+                datasets: [{
+                    label: 'Mood Rating',
+                    data: data.map(entry => entry.mood_rating),
+                    borderColor: '#6c5ce7',
+                    backgroundColor: 'rgba(108, 92, 231, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#6c5ce7',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10,
+                        ticks: {
+                            stepSize: 1
+                        },
+                        grid: {
+                            color: 'rgba(0,0,0,0.1)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(0,0,0,0.1)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff',
+                        borderColor: '#6c5ce7',
+                        borderWidth: 1
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+    }
+</script>
+{% endblock %}

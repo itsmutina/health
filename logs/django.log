@@ -1,0 +1,1455 @@
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\accounts\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\accounts\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\accounts\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /accounts/signup/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\db\models\options.py", line 681, in get_field
+    return self.fields_map[field_name]
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\decorators.py", line 20, in wrap
+    resp = function(request, *args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\debug.py", line 92, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\views.py", line 242, in dispatch
+    return super(SignupView, self).dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\views.py", line 83, in dispatch
+    response = super(RedirectAuthenticatedUserMixin, self).dispatch(
+        request, *args, **kwargs
+    )
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\views.py", line 214, in dispatch
+    return super(CloseableSignupMixin, self).dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\views.py", line 99, in get
+    response = super(AjaxCapableProcessFormViewMixin, self).get(
+        request, *args, **kwargs
+    )
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\edit.py", line 144, in get
+    return self.render_to_response(self.get_context_data())
+                                   ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\views.py", line 270, in get_context_data
+    ret = super(SignupView, self).get_context_data(**kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\edit.py", line 74, in get_context_data
+    kwargs["form"] = self.get_form()
+                     ~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\views.py", line 121, in get_form
+    form = super(AjaxCapableProcessFormViewMixin, self).get_form(form_class)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\edit.py", line 39, in get_form
+    return form_class(**self.get_form_kwargs())
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\forms.py", line 396, in __init__
+    super(SignupForm, self).__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\forms.py", line 287, in __init__
+    username_field.max_length = get_username_max_length()
+                                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\utils.py", line 74, in get_username_max_length
+    max_length = User._meta.get_field(USER_MODEL_USERNAME_FIELD).max_length
+                 ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\db\models\options.py", line 683, in get_field
+    raise FieldDoesNotExist(
+        "%s has no field named '%s'" % (self.object_name, field_name)
+    )
+django.core.exceptions.FieldDoesNotExist: User has no field named 'username'
+Internal Server Error: /accounts/signup/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\db\models\options.py", line 681, in get_field
+    return self.fields_map[field_name]
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\decorators.py", line 20, in wrap
+    resp = function(request, *args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\debug.py", line 92, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\views.py", line 242, in dispatch
+    return super(SignupView, self).dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\views.py", line 83, in dispatch
+    response = super(RedirectAuthenticatedUserMixin, self).dispatch(
+        request, *args, **kwargs
+    )
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\views.py", line 214, in dispatch
+    return super(CloseableSignupMixin, self).dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\views.py", line 99, in get
+    response = super(AjaxCapableProcessFormViewMixin, self).get(
+        request, *args, **kwargs
+    )
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\edit.py", line 144, in get
+    return self.render_to_response(self.get_context_data())
+                                   ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\views.py", line 270, in get_context_data
+    ret = super(SignupView, self).get_context_data(**kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\edit.py", line 74, in get_context_data
+    kwargs["form"] = self.get_form()
+                     ~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\views.py", line 121, in get_form
+    form = super(AjaxCapableProcessFormViewMixin, self).get_form(form_class)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\edit.py", line 39, in get_form
+    return form_class(**self.get_form_kwargs())
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\forms.py", line 396, in __init__
+    super(SignupForm, self).__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\account\forms.py", line 287, in __init__
+    username_field.max_length = get_username_max_length()
+                                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\allauth\utils.py", line 74, in get_username_max_length
+    max_length = User._meta.get_field(USER_MODEL_USERNAME_FIELD).max_length
+                 ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\db\models\options.py", line 683, in get_field
+    raise FieldDoesNotExist(
+        "%s has no field named '%s'" % (self.object_name, field_name)
+    )
+django.core.exceptions.FieldDoesNotExist: User has no field named 'username'
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\accounts\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\urls.py changed, reloading.
+C:\Users\hp\Music\mental\mental_health_journal\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\defaulttags.py", line 967, in do_if
+    nodelist = parser.parse(("endif",))
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 242: 'endblock', expected 'endif'. Did you forget to register or load this tag?
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\defaulttags.py", line 967, in do_if
+    nodelist = parser.parse(("endif",))
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 242: 'endblock', expected 'endif'. Did you forget to register or load this tag?
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\defaulttags.py", line 967, in do_if
+    nodelist = parser.parse(("endif",))
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 242: 'endblock', expected 'endif'. Did you forget to register or load this tag?
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 513, in parse
+    raise self.error(token, e)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 558, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 282: 'endif', expected 'endblock'. Did you forget to register or load this tag?
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /accounts/login/
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /accounts/signup/
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /app/
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /app/onboarding/
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /app/entry/new/
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /app/history/
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /insights/
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /reports/
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /accounts/profile/
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /accounts/settings/
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /
+C:\Users\hp\Music\mental\accounts\views.py changed, reloading.
+C:\Users\hp\Music\mental\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\accounts\views.py changed, reloading.
+C:\Users\hp\Music\mental\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /app/entry/1/edit/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\contrib\auth\mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\hp\Music\mental\journal\views.py", line 132, in get
+    return render(request, 'journal/edit_entry.html', context)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: journal/edit_entry.html
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\models.py changed, reloading.
+C:\Users\hp\Music\mental\journal\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\models.py changed, reloading.
+C:\Users\hp\Music\mental\journal\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\models.py changed, reloading.
+C:\Users\hp\Music\mental\journal\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'shared_report' with arguments '('token',)' not found. 1 pattern(s) tried: ['reports/share/(?P<token>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/\\Z']
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'shared_report' with arguments '('token',)' not found. 1 pattern(s) tried: ['reports/share/(?P<token>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/\\Z']
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'shared_report' with arguments '('token',)' not found. 1 pattern(s) tried: ['reports/share/(?P<token>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/\\Z']
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+Watching for file changes with StatReloader
+Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\http\request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Bad Request: /reports/
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'shared_report' with arguments '('token',)' not found. 1 pattern(s) tried: ['reports/share/(?P<token>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/\\Z']
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'shared_report' with arguments '('token',)' not found. 1 pattern(s) tried: ['reports/share/(?P<token>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/\\Z']
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\accounts\views.py changed, reloading.
+C:\Users\hp\Music\mental\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\accounts\views.py changed, reloading.
+C:\Users\hp\Music\mental\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+C:\Users\hp\Music\mental\journal\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'shared_report' with arguments '('token',)' not found. 1 pattern(s) tried: ['reports/share/(?P<token>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/\\Z']
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'shared_report' with arguments '('token',)' not found. 1 pattern(s) tried: ['reports/share/(?P<token>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/\\Z']
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+C:\Users\hp\Music\mental\insights\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'shared_report' with keyword arguments '{'token': 'token'}' not found. 1 pattern(s) tried: ['reports/share/(?P<token>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/\\Z']
+Internal Server Error: /reports/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'shared_report' with keyword arguments '{'token': 'token'}' not found. 1 pattern(s) tried: ['reports/share/(?P<token>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/\\Z']
+Internal Server Error: /reports/share/1165526b-ca03-4cf4-a105-5a415aa940f1/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\hp\Music\mental\reports\views.py", line 276, in get
+    return render(request, 'reports/shared_report.html', context)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: reports/shared_report.html
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\reports\urls.py changed, reloading.
+C:\Users\hp\Music\mental\reports\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+C:\Users\hp\Music\mental\reports\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /reports/share/8b0f4d72-b16a-4bf4-876a-75aa295e30d7/download/
+Not Found: /reports/share/8b0f4d72-b16a-4bf4-876a-75aa295e30d7/download/
+Not Found: /reports/share/8b0f4d72-b16a-4bf4-876a-75aa295e30d7/download/
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+C:\Users\hp\Music\mental\reports\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /reports/share/8b0f4d72-b16a-4bf4-876a-75aa295e30d7/download/
+Not Found: /reports/share/8b0f4d72-b16a-4bf4-876a-75aa295e30d7/download/
+Not Found: /reports/share/a2e9c00a-e3ed-462d-a9b8-f258a2f32098/download/
+Not Found: /reports/share/a2e9c00a-e3ed-462d-a9b8-f258a2f32098/download/
+Not Found: /reports/share/c50b9c59-5365-40e4-b11a-b40964e92e7d/download/
+Watching for file changes with StatReloader
+Not Found: /reports/share/670e9a9c-1492-40de-85ec-503db7405722/download/
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Internal Server Error: /admin/accounts/user/7/change/
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\contrib\admin\options.py", line 809, in get_form
+    return modelform_factory(self.model, **defaults)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\forms\models.py", line 642, in modelform_factory
+    return type(form)(class_name, (form,), form_class_attrs)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\forms\models.py", line 300, in __new__
+    fields = fields_for_model(
+        opts.model,
+    ...<10 lines>...
+        apply_limit_choices_to=False,
+    )
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\forms\models.py", line 198, in fields_for_model
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: 'created_at' cannot be specified for User model form as it is a non-editable field
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\contrib\admin\options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\contrib\admin\options.py", line 1889, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\contrib\admin\options.py", line 1747, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\contrib\admin\options.py", line 1782, in _changeform_view
+    ModelForm = self.get_form(
+        request, obj, change=not add, fields=flatten_fieldsets(fieldsets)
+    )
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\contrib\auth\admin.py", line 98, in get_form
+    return super().get_form(request, obj, **defaults)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Roaming\Python\Python313\site-packages\django\contrib\admin\options.py", line 811, in get_form
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: 'created_at' cannot be specified for User model form as it is a non-editable field. Check fields/fieldsets/exclude attributes of class CustomUserAdmin.
+C:\Users\hp\Music\mental\accounts\admin.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\accounts\admin.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\hp\Music\mental\mental_health_journal\settings.py changed, reloading.
+Watching for file changes with StatReloader

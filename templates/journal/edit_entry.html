@@ -1,0 +1,322 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Entry - Mental Health Journal{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i class="fas fa-edit"></i> Edit Entry for {{ entry.date|date:"F j, Y" }}
+                </h4>
+            </div>
+            <div class="card-body">
+                <form id="entryForm" method="post">
+                    {% csrf_token %}
+                    
+                    <!-- Mood Rating -->
+                    <div class="mb-4">
+                        <label class="form-label">
+                            <strong>How were you feeling that day?</strong>
+                            <span class="text-muted">(0 = Very Low, 10 = Very High)</span>
+                        </label>
+                        <div class="d-flex align-items-center">
+                            <span class="me-3">0</span>
+                            <input type="range" 
+                                   class="form-range mood-slider" 
+                                   id="moodSlider" 
+                                   name="mood_rating" 
+                                   min="0" 
+                                   max="10" 
+                                   value="{{ entry.mood_rating }}" 
+                                   oninput="updateMoodValue(this)">
+                            <span class="ms-3">10</span>
+                            <span id="mood-value" class="badge bg-primary ms-3">{{ entry.mood_rating }}</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Emotions -->
+                    <div class="mb-4">
+                        <label class="form-label">
+                            <strong>What emotions did you experience?</strong>
+                            <span class="text-muted">(Select all that apply)</span>
+                        </label>
+                        <div class="row">
+                            {% for emotion in user_emotion_tags %}
+                            <div class="col-md-4 col-sm-6 mb-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" 
+                                           type="checkbox" 
+                                           name="emotions" 
+                                           value="{{ emotion.emotion.id }}"
+                                           id="emotion_{{ emotion.emotion.id }}"
+                                           {% if emotion.emotion in selected_emotions %}checked{% endif %}>
+                                    <label class="form-check-label emotion-chip" for="emotion_{{ emotion.emotion.id }}">
+                                        {{ emotion.emotion.name }}
+                                    </label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <!-- Activities -->
+                    <div class="mb-4">
+                        <label class="form-label">
+                            <strong>What activities did you do?</strong>
+                            <span class="text-muted">(Select all that apply)</span>
+                        </label>
+                        <div class="row">
+                            {% for activity in user_activity_tags %}
+                            <div class="col-md-4 col-sm-6 mb-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" 
+                                           type="checkbox" 
+                                           name="activities" 
+                                           value="{{ activity.activity.id }}"
+                                           id="activity_{{ activity.activity.id }}"
+                                           {% if activity.activity in selected_activities %}checked{% endif %}>
+                                    <label class="form-check-label activity-chip" for="activity_{{ activity.activity.id }}">
+                                        {{ activity.activity.name }}
+                                    </label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Info -->
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">
+                                <strong>Stress Level</strong>
+                                <span class="text-muted">(Optional)</span>
+                            </label>
+                            <input type="range" 
+                                   class="form-range" 
+                                   name="stress_level" 
+                                   min="0" 
+                                   max="10" 
+                                   value="{{ entry.stress_level|default:5 }}">
+                            <div class="d-flex justify-content-between">
+                                <small>0 - No Stress</small>
+                                <small>10 - Very Stressed</small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">
+                                <strong>Sleep Hours</strong>
+                                <span class="text-muted">(Optional)</span>
+                            </label>
+                            <input type="number" 
+                                   class="form-control" 
+                                   name="sleep_hours" 
+                                   min="0" 
+                                   max="24" 
+                                   step="0.5" 
+                                   value="{{ entry.sleep_hours|default:'' }}"
+                                   placeholder="e.g., 7.5">
+                        </div>
+                    </div>
+                    
+                    <!-- Notes -->
+                    <div class="mb-4">
+                        <label class="form-label">
+                            <strong>Additional Notes</strong>
+                            <span class="text-muted">(Optional)</span>
+                        </label>
+                        <textarea class="form-control" 
+                                  name="notes" 
+                                  rows="4" 
+                                  placeholder="How was your day? What's on your mind?">{{ entry.notes }}</textarea>
+                    </div>
+                    
+                    <!-- Quick Prompt -->
+                    <div class="mb-4">
+                        <label class="form-label">
+                            <strong>Quick Prompt</strong>
+                            <span class="text-muted">(Optional)</span>
+                        </label>
+                        <select class="form-select" name="quick_prompt">
+                            <option value="">Choose a prompt...</option>
+                            <option value="grateful">What are you grateful for today?</option>
+                            <option value="challenge">What was your biggest challenge today?</option>
+                            <option value="accomplishment">What did you accomplish today?</option>
+                            <option value="emotion">How did you handle your emotions today?</option>
+                            <option value="self-care">How did you practice self-care today?</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'journal:home' %}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to Dashboard
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Update Entry
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.mood-slider {
+    flex: 1;
+}
+
+.emotion-chip, .activity-chip {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 1rem;
+    background-color: #f8f9fa;
+    transition: all 0.2s ease;
+    margin-bottom: 0.5rem;
+    display: block;
+    text-align: center;
+}
+
+.emotion-chip:hover, .activity-chip:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.form-check-input:checked + .emotion-chip,
+.form-check-input:checked + .activity-chip {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+}
+
+.form-check-input {
+    display: none;
+}
+
+.badge {
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Update mood value display
+    function updateMoodValue(slider) {
+        const value = slider.value;
+        const badge = document.getElementById('mood-value');
+        badge.textContent = value;
+        
+        // Update badge color based on mood
+        badge.className = 'badge ms-3';
+        if (value <= 3) {
+            badge.classList.add('bg-danger');
+        } else if (value <= 6) {
+            badge.classList.add('bg-warning');
+        } else {
+            badge.classList.add('bg-success');
+        }
+    }
+    
+    // Initialize mood value on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const moodSlider = document.getElementById('moodSlider');
+        updateMoodValue(moodSlider);
+    });
+    
+    // Form submission
+    document.getElementById('entryForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Collect form data
+        const formData = new FormData(this);
+        
+        // Convert to JSON for API call
+        const moodRating = parseInt(formData.get('mood_rating'));
+        if (isNaN(moodRating) || moodRating < 0 || moodRating > 10) {
+            alert('Please select a valid mood rating between 0 and 10.');
+            return;
+        }
+        
+        const data = {
+            mood_rating: moodRating,
+            stress_level: formData.get('stress_level') ? parseInt(formData.get('stress_level')) : null,
+            sleep_hours: formData.get('sleep_hours') && formData.get('sleep_hours') !== '' ? parseFloat(formData.get('sleep_hours')) : null,
+            notes: formData.get('notes') || '',
+            quick_prompt: formData.get('quick_prompt') || '',
+            emotions: Array.from(document.querySelectorAll('input[name="emotions"]:checked')).map(input => parseInt(input.value)),
+            activities: Array.from(document.querySelectorAll('input[name="activities"]:checked')).map(input => parseInt(input.value))
+        };
+        
+        // Debug: Log the data being sent
+        console.log('Sending data:', data);
+        
+        // Get CSRF token
+        const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]');
+        if (!csrfToken) {
+            alert('CSRF token not found. Please refresh the page and try again.');
+            return;
+        }
+        
+        // Submit via API
+        fetch('{% url "journal:edit_entry" entry.id %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken.value
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            console.log('Response status:', response.status);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response data:', data);
+            if (data.success) {
+                // Show success message with appropriate action
+                const alert = document.createElement('div');
+                alert.className = 'alert alert-success alert-dismissible fade show';
+                const action = data.action || 'updated';
+                const message = data.message || `Entry ${action} successfully!`;
+                
+                alert.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <strong>Success!</strong> ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
+                
+                // Insert alert at the top of the card body
+                const cardBody = document.querySelector('.card-body');
+                cardBody.insertBefore(alert, cardBody.firstChild);
+                
+                // Scroll to top to show the alert
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Remove alert after 5 seconds
+                setTimeout(() => {
+                    if (alert.parentNode) {
+                        alert.remove();
+                    }
+                }, 5000);
+            } else {
+                alert('Error saving entry: ' + (data.error || 'Unknown error'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error saving entry: ' + error.message + '. Please try again.');
+        });
+    });
+</script>
+{% endblock %}

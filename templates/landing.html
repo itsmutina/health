@@ -1,0 +1,942 @@
+{% extends 'base.html' %}
+
+{% block title %}Mental Health Journal - Track Your Mood, Spot Patterns, Feel Better{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<!-- Authenticated User Section -->
+<div class="hero-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 100px 0 80px 0; margin: 0 -15px 60px -15px; position: relative; overflow: hidden; border-radius: 30px 30px 30px 30px;">
+    <!-- Animated background elements -->
+    <div class="hero-bg-elements">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+    </div>
+    
+    <div class="container position-relative">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="hero-content">
+                    <h1 class="display-3 fw-bold mb-4 hero-title">
+                        Welcome back, <span class="text-warning">{{ user.first_name|default:user.email }}</span>!
+                    </h1>
+                    <p class="lead mb-4 hero-subtitle">
+                        Ready to continue your mental health journey? Access your journal, 
+                        view insights, and track your progress with our beautiful, intuitive interface.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="{% url 'journal:home' %}" class="btn btn-warning btn-lg px-5 py-3 hero-btn">
+                            <i class="fas fa-home me-2"></i> Go to Dashboard
+                        </a>
+                        <a href="{% url 'journal:new_entry' %}" class="btn btn-outline-light btn-lg px-5 py-3 hero-btn">
+                            <i class="fas fa-plus me-2"></i> New Entry
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="hero-mockup">
+                    <div class="mockup-container">
+                        <i class="fas fa-chart-line fa-8x opacity-75 floating-icon"></i>
+                        <div class="pulse-ring"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Access Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold mb-3">Quick Access</h2>
+                <p class="lead text-muted">Everything you need for your mental health journey</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-plus fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="card-title">New Entry</h5>
+                        <p class="card-text">Log your mood and activities for today</p>
+                        <a href="{% url 'journal:new_entry' %}" class="btn btn-primary">Add Entry</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-history fa-3x text-success"></i>
+                        </div>
+                        <h5 class="card-title">History</h5>
+                        <p class="card-text">View and search your past entries</p>
+                        <a href="{% url 'journal:history' %}" class="btn btn-success">View History</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-chart-line fa-3x text-info"></i>
+                        </div>
+                        <h5 class="card-title">Insights</h5>
+                        <p class="card-text">Discover patterns in your mood data</p>
+                        <a href="{% url 'insights:insights' %}" class="btn btn-info">View Insights</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-cog fa-3x text-warning"></i>
+                        </div>
+                        <h5 class="card-title">Settings</h5>
+                        <p class="card-text">Customize your journal preferences</p>
+                        <a href="{% url 'accounts:settings' %}" class="btn btn-warning">Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<!-- Hero Section -->
+<div class="hero-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 120px 0 80px 0; margin: 0 -15px 60px -15px; position: relative; overflow: hidden; border-radius: 30px 30px 30px 30px;">
+    <!-- Animated background elements -->
+    <div class="hero-bg-elements">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+    </div>
+    
+    <div class="container position-relative">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1 class="display-2 fw-bold mb-4 hero-title">
+                        Log your mood in <span class="text-warning">30s</span>.<br>
+                        Spot <span class="text-info">patterns</span>.<br>
+                        <span class="text-success">Feel better.</span>
+                    </h1>
+                    <p class="lead mb-4 hero-subtitle">
+                        A simple, private journal to track your mental health journey. 
+                        Discover insights about your mood patterns and build healthier habits with our beautiful, intuitive interface.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="{% url 'account_signup' %}" class="btn btn-warning btn-lg px-5 py-3 hero-btn">
+                            <i class="fas fa-rocket me-2"></i> Get Started Free
+                        </a>
+                        <a href="{% url 'account_login' %}" class="btn btn-outline-light btn-lg px-5 py-3 hero-btn">
+                            <i class="fas fa-sign-in-alt me-2"></i> Sign In
+                        </a>
+                        <a href="#features" class="btn btn-outline-light btn-lg px-5 py-3 hero-btn">
+                            <i class="fas fa-play me-2"></i> Learn More
+                        </a>
+                    </div>
+                    <div class="hero-stats mt-5">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <div class="stat-item">
+                                    <h3 class="fw-bold text-warning">10K+</h3>
+                                    <p class="mb-0">Happy Users</p>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item">
+                                    <h3 class="fw-bold text-info">50K+</h3>
+                                    <p class="mb-0">Entries Logged</p>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="stat-item">
+                                    <h3 class="fw-bold text-success">95%</h3>
+                                    <p class="mb-0">Satisfaction</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="hero-mockup">
+                    <div class="mockup-container">
+                        <i class="fas fa-mobile-alt fa-10x opacity-75 floating-icon"></i>
+                        <div class="pulse-ring"></div>
+                        <div class="floating-elements">
+                            <i class="fas fa-heart fa-2x floating-emoji emoji-1"></i>
+                            <i class="fas fa-smile fa-2x floating-emoji emoji-2"></i>
+                            <i class="fas fa-chart-line fa-2x floating-emoji emoji-3"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<section id="features" class="py-5 section-after-hero">
+    <div class="container" style="background: white; position: relative; z-index: 3;">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-4 fw-bold mb-3 section-title">Why Choose Our Journal?</h2>
+                <p class="lead text-muted section-subtitle">Simple, secure, and designed with your mental health in mind</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card card h-100 text-center">
+                    <div class="card-body">
+                        <div class="feature-icon mb-4">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-clock fa-3x text-primary"></i>
+                            </div>
+                        </div>
+                        <h5 class="card-title feature-title">Quick & Easy</h5>
+                        <p class="card-text feature-text">
+                            Log your mood in just 30 seconds with our intuitive interface. 
+                            No complex forms or overwhelming options.
+                        </p>
+                        <div class="feature-highlight">
+                            <span class="badge bg-primary">30s</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="feature-card card h-100 text-center">
+                    <div class="card-body">
+                        <div class="feature-icon mb-4">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-shield-alt fa-3x text-success"></i>
+                            </div>
+                        </div>
+                        <h5 class="card-title feature-title">Private & Secure</h5>
+                        <p class="card-text feature-text">
+                            Your data is encrypted and stays private. No social features, 
+                            no sharing unless you choose to.
+                        </p>
+                        <div class="feature-highlight">
+                            <span class="badge bg-success">100% Private</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="feature-card card h-100 text-center">
+                    <div class="card-body">
+                        <div class="feature-icon mb-4">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-chart-line fa-3x text-info"></i>
+                            </div>
+                        </div>
+                        <h5 class="card-title feature-title">Smart Insights</h5>
+                        <p class="card-text feature-text">
+                            Discover patterns in your mood, sleep, and activities. 
+                            Get personalized insights to improve your mental health.
+                        </p>
+                        <div class="feature-highlight">
+                            <span class="badge bg-info">AI-Powered</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-4 fw-bold mb-3 section-title">How It Works</h2>
+                <p class="lead text-muted section-subtitle">Three simple steps to better mental health</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4 text-center">
+                <div class="step-card">
+                    <div class="step-number mb-4">
+                        <div class="step-badge">
+                            <span class="step-icon">1</span>
+                        </div>
+                    </div>
+                    <h5 class="step-title">Sign Up & Set Up</h5>
+                    <p class="step-description">
+                        Create your account and customize your journal with 
+                        your preferred reminder time and emotion tags.
+                    </p>
+                    <div class="step-icon-feature">
+                        <i class="fas fa-user-plus fa-2x text-primary"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 text-center">
+                <div class="step-card">
+                    <div class="step-number mb-4">
+                        <div class="step-badge">
+                            <span class="step-icon">2</span>
+                        </div>
+                    </div>
+                    <h5 class="step-title">Log Daily</h5>
+                    <p class="step-description">
+                        Take 30 seconds each day to log your mood, emotions, 
+                        and activities. It's quick and easy.
+                    </p>
+                    <div class="step-icon-feature">
+                        <i class="fas fa-edit fa-2x text-success"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 text-center">
+                <div class="step-card">
+                    <div class="step-number mb-4">
+                        <div class="step-badge">
+                            <span class="step-icon">3</span>
+                        </div>
+                    </div>
+                    <h5 class="step-title">Discover Patterns</h5>
+                    <p class="step-description">
+                        View your mood trends, get insights, and understand 
+                        what affects your mental health.
+                    </p>
+                    <div class="step-icon-feature">
+                        <i class="fas fa-chart-line fa-2x text-info"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-4 fw-bold mb-3 section-title">What Users Say</h2>
+                <p class="lead text-muted section-subtitle">Real stories from our community</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="testimonial-card card">
+                    <div class="card-body text-center">
+                        <div class="testimonial-avatar mb-3">
+                            <div class="avatar-circle">
+                                <i class="fas fa-user fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "This journal helped me understand my mood patterns. 
+                            I discovered that exercise really does improve my mood!"
+                        </p>
+                        <footer class="testimonial-author">
+                            <strong>Sarah M.</strong>
+                            <small class="text-muted d-block">Mental Health Advocate</small>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="testimonial-card card">
+                    <div class="card-body text-center">
+                        <div class="testimonial-avatar mb-3">
+                            <div class="avatar-circle">
+                                <i class="fas fa-user fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Simple, private, and effective. I love how I can track 
+                            my progress and see improvements over time."
+                        </p>
+                        <footer class="testimonial-author">
+                            <strong>Mike R.</strong>
+                            <small class="text-muted d-block">Software Engineer</small>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="testimonial-card card">
+                    <div class="card-body text-center">
+                        <div class="testimonial-avatar mb-3">
+                            <div class="avatar-circle">
+                                <i class="fas fa-user fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "The insights feature is amazing. It helped me identify 
+                            triggers and build better coping strategies."
+                        </p>
+                        <footer class="testimonial-author">
+                            <strong>Emma L.</strong>
+                            <small class="text-muted d-block">Therapist</small>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 cta-section text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: relative; overflow: hidden;">
+    <!-- Background elements -->
+    <div class="cta-bg-elements">
+        <div class="cta-shape cta-shape-1"></div>
+        <div class="cta-shape cta-shape-2"></div>
+        <div class="cta-shape cta-shape-3"></div>
+    </div>
+    
+    <div class="container text-center position-relative">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="display-3 fw-bold mb-4 cta-title">Ready to Start Your Journey?</h2>
+                <p class="lead mb-4 cta-subtitle">
+                    Join thousands of people who are already tracking their mental health 
+                    and building better habits. Start your transformation today.
+                </p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap mb-4">
+                    <a href="{% url 'account_signup' %}" class="btn btn-warning btn-lg px-5 py-3 cta-btn">
+                        <i class="fas fa-rocket me-2"></i> Get Started Free
+                    </a>
+                    <a href="{% url 'account_login' %}" class="btn btn-outline-light btn-lg px-5 py-3 cta-btn">
+                        <i class="fas fa-sign-in-alt me-2"></i> Sign In
+                    </a>
+                </div>
+                <div class="cta-features">
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="cta-feature">
+                                <i class="fas fa-credit-card fa-2x mb-2"></i>
+                                <p class="mb-0"><strong>No credit card required</strong></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="cta-feature">
+                                <i class="fas fa-infinity fa-2x mb-2"></i>
+                                <p class="mb-0"><strong>Active forever</strong></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="cta-feature">
+                                <i class="fas fa-shield-alt fa-2x mb-2"></i>
+                                <p class="mb-0"><strong>Privacy guaranteed</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endif %}
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Hero Section Styles */
+    .hero-section {
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        border-radius: 30px;
+    }
+    
+    /* Ensure proper spacing after hero section */
+    .hero-section + section,
+    .section-after-hero {
+        margin-top: 40px;
+        padding-top: 60px;
+        position: relative;
+        z-index: 3;
+        background: white;
+    }
+    
+    .hero-bg-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+    
+    .floating-shape {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    .shape-1 {
+        width: 80px;
+        height: 80px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+    
+    .shape-2 {
+        width: 120px;
+        height: 120px;
+        top: 60%;
+        right: 15%;
+        animation-delay: 2s;
+    }
+    
+    .shape-3 {
+        width: 60px;
+        height: 60px;
+        top: 40%;
+        right: 30%;
+        animation-delay: 4s;
+    }
+    
+    .shape-4 {
+        width: 100px;
+        height: 100px;
+        top: 80%;
+        left: 20%;
+        animation-delay: 1s;
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem;
+        opacity: 0.9;
+    }
+    
+    .hero-btn {
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .hero-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-stats {
+        margin-top: 3rem;
+    }
+    
+    .stat-item h3 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .mockup-container {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .floating-icon {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    .pulse-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 200px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+    }
+    
+    .floating-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .floating-emoji {
+        position: absolute;
+        animation: float 4s ease-in-out infinite;
+    }
+    
+    .emoji-1 {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+    
+    .emoji-2 {
+        top: 60%;
+        right: 10%;
+        animation-delay: 1.5s;
+    }
+    
+    .emoji-3 {
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 3s;
+    }
+    
+    /* Section Styles */
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.8;
+    }
+    
+    /* Feature Cards */
+    .feature-card {
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        background: white;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .icon-wrapper {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover .icon-wrapper {
+        transform: scale(1.1);
+        background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+    
+    .feature-card:hover .icon-wrapper i {
+        color: white !important;
+    }
+    
+    .feature-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+    
+    .feature-text {
+        color: #6c757d;
+        line-height: 1.6;
+    }
+    
+    .feature-highlight {
+        margin-top: 1rem;
+    }
+    
+    .feature-highlight .badge {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+    }
+    
+    /* Step Cards */
+    .step-card {
+        padding: 2rem 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .step-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .step-badge {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    .step-badge::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: pulse 2s ease-in-out infinite;
+    }
+    
+    .step-icon {
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    
+    .step-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #2d3436;
+    }
+    
+    .step-description {
+        color: #6c757d;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+    
+    .step-icon-feature {
+        opacity: 0.7;
+    }
+    
+    /* Testimonial Cards */
+    .testimonial-card {
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        background: white;
+    }
+    
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .avatar-circle {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        color: white;
+    }
+    
+    .testimonial-rating {
+        color: #ffc107;
+    }
+    
+    .testimonial-text {
+        font-style: italic;
+        color: #6c757d;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+    
+    .testimonial-author strong {
+        color: #2d3436;
+        font-size: 1.1rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .cta-bg-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+    
+    .cta-shape {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        animation: float 8s ease-in-out infinite;
+    }
+    
+    .cta-shape-1 {
+        width: 150px;
+        height: 150px;
+        top: 10%;
+        left: 5%;
+        animation-delay: 0s;
+    }
+    
+    .cta-shape-2 {
+        width: 100px;
+        height: 100px;
+        top: 60%;
+        right: 10%;
+        animation-delay: 3s;
+    }
+    
+    .cta-shape-3 {
+        width: 200px;
+        height: 200px;
+        bottom: 10%;
+        left: 20%;
+        animation-delay: 6s;
+    }
+    
+    .cta-title {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .cta-subtitle {
+        font-size: 1.25rem;
+        opacity: 0.9;
+    }
+    
+    .cta-btn {
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .cta-features {
+        margin-top: 2rem;
+    }
+    
+    .cta-feature {
+        padding: 1rem;
+    }
+    
+    .cta-feature i {
+        color: rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Animations */
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.1); opacity: 0.7; }
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+        }
+        
+        .hero-btn, .cta-btn {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        .floating-shape, .cta-shape {
+            display: none;
+        }
+        
+        .stat-item h3 {
+            font-size: 2rem;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .hero-title {
+            font-size: 2rem;
+        }
+        
+        .section-title {
+            font-size: 1.75rem;
+        }
+        
+        .cta-title {
+            font-size: 2rem;
+        }
+        
+        .hero-stats .row {
+            text-align: center;
+        }
+        
+        .hero-stats .col-4 {
+            margin-bottom: 1rem;
+        }
+    }
+</style>
+{% endblock %}
