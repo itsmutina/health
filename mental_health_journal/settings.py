@@ -5,6 +5,7 @@ Django settings for mental_health_journal project.
 import os
 from pathlib import Path
 from decouple import config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,6 +84,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# Render PostgreSQL Database
+DATABASE_URL = "postgresql://stress_94od_user:E486F4j8KrqIJYQWCJescPPfZ55KOoWB@dpg-d322krfdiees738e4450-a.frankfurt-postgres.render.com/stress_94od"
+DATABASES["default"] = dj_database_url.parse(DATABASE_URL)
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
