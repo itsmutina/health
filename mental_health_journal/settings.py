@@ -85,7 +85,7 @@ DATABASES = {
     }
 }
 # Render PostgreSQL Database
-DATABASE_URL = "postgresql://stress_94od_user:E486F4j8KrqIJYQWCJescPPfZ55KOoWB@dpg-d322krfdiees738e4450-a.frankfurt-postgres.render.com/stress_94od"
+DATABASE_URL = "postgresql://stress_94od_user:E486F4j8KrqIJYQWCJescPPfZ55KOoWB@dpg-d322krfdiees738e4450-a/stress_94od"
 DATABASES["default"] = dj_database_url.parse(DATABASE_URL)
 
 # Password validation
